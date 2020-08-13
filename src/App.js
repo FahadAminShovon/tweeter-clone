@@ -1,24 +1,44 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+
+// React router imports
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+
+// Redux imports
+import { Provider } from 'react-redux';
+import store from './redux/store';
+
+
+// Mui imports
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
+import customTheme from './util/theme';
+// Component import
+import Navbar from './components/Navbar';
+
+// page imports
+import {Home, Login, Signup} from './pages';
+
+
+const theme = createMuiTheme(customTheme);
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <ThemeProvider theme = {theme}>
+      <Router>
+        <Provider store = {store}>
+        <Navbar/>
+            <div className="container">
+              <Switch>
+                <Route exact path="/" component={Home}/>
+                <Route exact path="/login" component={Login}/>
+                <Route exact path="/signup" component={Signup}/>
+              </Switch>
+            </div>
+        </Provider>
+      </Router>
+    </ThemeProvider>
     </div>
   );
 }
