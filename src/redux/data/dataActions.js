@@ -86,13 +86,13 @@ export const deleteScream = screamId => dispatch => {
         .catch((err)=>console.log(err));
 }
 
-export const postScream = (newScream) => dispatch => {
+export const postScream = (newScream, handleClose) => dispatch => {
     dispatch(loadUI());
-    console.log(newScream);
     axios.post('/scream', newScream)
         .then(res => {
             dispatch(postScreamAction(res.data));
             dispatch(clearError());
+            handleClose();
         })
         .catch(err => {
             dispatch(setError(err.response.data));

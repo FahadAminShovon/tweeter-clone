@@ -16,6 +16,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import AddIcon from '@material-ui/icons/Add';
 import CloseIcon from '@material-ui/icons/Close';
 import MyButton from '../util/MyButton';
+import { clearError } from '../redux/UI/UIActions';
 
 
 const useStyles = makeStyles((theme) => ({...theme.spreadIt,
@@ -46,12 +47,12 @@ function PostScream() {
 
     const handleClose = () => {
         setOpen(false);
+        dispatch(clearError());
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
-        dispatch(postScream({body}));
-        handleClose();
+        dispatch(postScream({body}, handleClose));
     }
 
     return (
