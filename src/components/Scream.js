@@ -22,6 +22,7 @@ import {likeScream, unlikeScream} from '../redux'
 import { useDispatch, useSelector } from 'react-redux';
 //utils
 import MyButton from '../util/MyButton';
+import DeleteScream from './DeleteScream';
 
 const useStyles = makeStyles({
     card: {
@@ -43,6 +44,7 @@ function Scream({scream : {body, createdAt, userImage, userHandle,screamId, like
     const dispatch = useDispatch();
     const user = useSelector(state => state.user);
     const authenticated = user.authenticated;
+    const handle = user.credentials.handle;
     const likedScream = user.likes && user.likes.find(like => like.screamId === screamId) ? true : false;
 
     const likeButton = !authenticated ? (
@@ -68,6 +70,11 @@ function Scream({scream : {body, createdAt, userImage, userHandle,screamId, like
             </MyButton>
         )
     )
+
+    const deleteButton = authenticated && userHandle === handle ? (
+        <DeleteScream screamId = {screamId}/>
+    ) : null
+
     return (
         <Card className={classes.card}>
             <CardMedia
@@ -76,6 +83,7 @@ function Scream({scream : {body, createdAt, userImage, userHandle,screamId, like
             title="Profile image"/>
             <CardContent className={classes.content}>
                 <Typography variant="h5" component={Link} color="primary" to={`/user/${userHandle}`}>{userHandle}</Typography>
+                {deleteButton}
                 <Typography variant="body2" color="textSecondary">{dayjs(createdAt).fromNow()}</Typography>
                 <Typography variant="body1">{body}</Typography>
                 {likeButton}

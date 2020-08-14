@@ -27,6 +27,13 @@ const setScreams = (payload) => {
     }
 }
 
+const deleteAction = (payload) => {
+    return ({
+        type:DELETE_SCREAM,
+        payload
+    })
+}
+
 const clearScreams = () => dispatch => {
     dispatch(setScreams([]));
 }
@@ -59,4 +66,13 @@ export const unlikeScream = (screamId) => dispatch => {
             dispatch(unlike(res.data));
         })
         .catch(err => console.log(err));
+}
+
+// Delete scream
+export const deleteScream = screamId => dispatch => {
+    axios.delete(`/scream/${screamId}`)
+        .then(() => {
+            dispatch(deleteAction(screamId));
+        })
+        .catch((err)=>console.log(err));
 }
