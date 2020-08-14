@@ -1,11 +1,17 @@
 import axios from "axios";
 import { clearError, setError, loadUI} from "../UI/UIActions";
-import {SET_USER, SET_UNAUTHENTICATED} from './userTypes';
+import {SET_USER, SET_UNAUTHENTICATED, SET_AUTHENTICATED} from './userTypes';
 
-export const set_user = (payload) => {
+export const setUser = (payload) => {
     return({
         type: SET_USER,
         payload: payload 
+    })
+}
+
+export const authenticateUser = () => {
+    return ({
+        type: SET_AUTHENTICATED
     })
 }
 
@@ -48,7 +54,7 @@ export const signupUser = (newUserData, history) => (dispatch) => {
 export const getUserData = () => (dispatch) => {
     axios.get('/user')
         .then(res => {
-            dispatch(set_user(res.data));
+            dispatch(setUser(res.data));
         })
         .catch(err => console.log(err));
 }

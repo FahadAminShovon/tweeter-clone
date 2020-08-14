@@ -9,7 +9,11 @@
 
 .container{
   margin: 80px auto 0px auto;
-  max-width: 1336px;
+  max-width: 1200px;
+}
+
+a{
+  text-decoration: none;
 }
 
 .nav-container {
@@ -46,9 +50,3 @@
     position: absolute !important;
 }
 
-@media (min-width: 576px) {
-  .container{
-    max-width: 90vw !important;
-    box-sizing: border-box;
-  }
- }
