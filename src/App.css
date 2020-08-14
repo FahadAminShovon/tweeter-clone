@@ -18,7 +18,9 @@ body,html {
 a{
   text-decoration: none;
 }
-
+.nav-container svg{
+  color: #fff;
+}
 .nav-container {
   margin: auto;
 }
