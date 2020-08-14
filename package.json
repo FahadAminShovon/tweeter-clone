@@ -41,5 +41,5 @@
     ]
   },
   "devDependencies": {},
-  "proxy": "https://asia-east2-socialape-ec3c1.cloudfunctions.net/api"
+  "proxy": "https://europe-west1-socialape-d081e.cloudfunctions.net/api"
 }
