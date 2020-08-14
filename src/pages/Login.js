@@ -28,7 +28,6 @@ const Login = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
 
-  console.log(classes);
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(loginUser({email,password},history));

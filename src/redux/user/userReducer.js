@@ -1,8 +1,9 @@
-import { SET_USER, SET_AUTHENTICATED, SET_UNAUTHENTICATED } from './userTypes'
+import { SET_USER, SET_AUTHENTICATED, SET_UNAUTHENTICATED, LOADING_USER } from './userTypes'
 
 
 const initialState = {
     authenticated: false,
+    loading: false,
     credentials: {},
     likes: [],
     notifications: []
@@ -21,7 +22,13 @@ export default function(state = initialState, action){
             return {
                 ...state,
                 authenticated: true,
-                ...action.payload
+                ...action.payload,
+                loading: false
+            }
+        case LOADING_USER:
+            return {
+                ...state,
+                loading: true
             }
         default:
             return state;
