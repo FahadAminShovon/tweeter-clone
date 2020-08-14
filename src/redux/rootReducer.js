@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
 import userReducer from "./user/userReducer";
 import UIReducer from "./UI/UIReducer";
-// import dataReducer from "./data/dataReducer";
+import dataReducer from "./data/dataReducer";
 
 const rootReducer = combineReducers({
-    // data: dataReducer, 
+    data: dataReducer, 
     UI: UIReducer,
     user: userReducer
 })

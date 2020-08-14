@@ -1,6 +1,6 @@
 import axios from "axios";
 import { clearError, setError, loadUI} from "../UI/UIActions";
-import {SET_USER, SET_UNAUTHENTICATED, SET_AUTHENTICATED, LOADING_USER} from './userTypes';
+import {SET_USER, SET_UNAUTHENTICATED, SET_AUTHENTICATED, LOADING_USER } from './userTypes';
 
 export const setUser = (payload) => {
     return({
@@ -26,6 +26,7 @@ export const unAuthUser = () => {
         type: SET_UNAUTHENTICATED
     })
 }
+
 
 export const loginUser = (userData, history) => (dispatch) => {
     dispatch(loadUI());

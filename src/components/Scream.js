@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 // router-dom imports
 import { Link } from 'react-router-dom';
 // dayjs imports
@@ -10,7 +11,17 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia'
 import Typography from '@material-ui/core/Typography';
-// Mui stuffs
+// icons
+import ChatIcon from '@material-ui/icons/Chat';
+import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
+import Favorite from '@material-ui/icons/Favorite';
+
+
+//redux stuff
+import {likeScream, unlikeScream} from '../redux'
+import { useDispatch, useSelector } from 'react-redux';
+//utils
+import MyButton from '../util/MyButton';
 
 const useStyles = makeStyles({
     card: {
@@ -29,6 +40,34 @@ const useStyles = makeStyles({
 function Scream({scream : {body, createdAt, userImage, userHandle,screamId, likeCount, commentCount}}) {
     const classes = useStyles();
     dayjs.extend(relativeTime);
+    const dispatch = useDispatch();
+    const user = useSelector(state => state.user);
+    const authenticated = user.authenticated;
+    const likedScream = user.likes && user.likes.find(like => like.screamId === screamId) ? true : false;
+
+    const likeButton = !authenticated ? (
+        <MyButton tip="Like">
+            <Link to="/login">
+                <FavoriteBorder color="primary"/>
+            </Link>
+        </MyButton>
+    ) : (
+        likedScream ? ( 
+            <MyButton 
+            tip="Undo like"
+            onClick={() => dispatch(unlikeScream(screamId))}
+            >
+                <Favorite color="primary"/>
+            </MyButton>
+        ) : (
+            <MyButton 
+            tip="Like"
+            onClick={() => dispatch(likeScream(screamId))}
+            >
+                <FavoriteBorder color="primary"/>
+            </MyButton>
+        )
+    )
     return (
         <Card className={classes.card}>
             <CardMedia
@@ -39,9 +78,21 @@ function Scream({scream : {body, createdAt, userImage, userHandle,screamId, like
                 <Typography variant="h5" component={Link} color="primary" to={`/user/${userHandle}`}>{userHandle}</Typography>
                 <Typography variant="body2" color="textSecondary">{dayjs(createdAt).fromNow()}</Typography>
                 <Typography variant="body1">{body}</Typography>
+                {likeButton}
+                <span>{likeCount} Likes </span>
+                <MyButton tip="comments">
+                    <ChatIcon color="primary"/>
+                </MyButton>
+                <span>{commentCount} comments</span>
             </CardContent>
         </Card>
     )
 }
+
+Scream.propTypes = {
+    scream: PropTypes.object.isRequired
+}
+
+
 
 export {Scream}
