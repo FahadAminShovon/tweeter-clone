@@ -26,7 +26,8 @@ const useStyles = makeStyles((theme) => ({...theme.spreadIt}));
 
 function Profile() {
     const classes = useStyles();;
-    const {bio, createdAt, email, handle, imageUrl, location, userId, website} = useSelector(state => state.user.credentials);
+    // email, userId
+    const {bio, createdAt, handle, imageUrl, location, website} = useSelector(state => state.user.credentials);
     const {loading,authenticated} = useSelector(state => state.user);
     const dispatch = useDispatch();
     const fileRef = useRef();

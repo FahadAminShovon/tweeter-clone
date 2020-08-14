@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core'
-import { Link } from 'react-router-dom'
 import MyButton from '../util/MyButton'
 import PropTypes from 'prop-types'
 // MUI stuff
@@ -13,7 +12,12 @@ import DeleteOutline from '@material-ui/icons/DeleteOutline';
 import { deleteScream } from '../redux/data/dataActions';
 import { useDispatch } from 'react-redux'
 
-const useStyles = makeStyles((theme) => ({...theme.spreadIt}));
+const useStyles = makeStyles((theme) => ({...theme.spreadIt ,
+        deleteButton : {
+            position: 'absolute',
+            top: "10%",
+            left: "90%"
+        }}));
 
 function DeleteScream({screamId}) {
 
