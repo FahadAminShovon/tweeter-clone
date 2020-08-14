@@ -2,6 +2,8 @@ import React, { useRef } from 'react';
 // react router
 import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
+// components import
+import {EditDetails} from './EditDetails'
 // MUI stuff
 import {makeStyles} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -18,7 +20,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
-import { uploadImage, logoutUser } from '../redux';
+import { uploadImage, logoutUser} from '../redux';
 
 
 const useStyles = makeStyles((theme) => ({...theme.spreadIt}));
@@ -90,6 +92,7 @@ function Profile() {
                         <KeyboardReturn color="primary"/>
                     </IconButton>
                 </Tooltip>
+                <EditDetails/>
             </div>
             </Paper>
         ) : (

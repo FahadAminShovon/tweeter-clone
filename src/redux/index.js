@@ -1,1 +1,1 @@
-export {loginUser, logoutUser, signupUser,getUserData, authenticateUser, uploadImage} from './user/userActions';
+export {loginUser, logoutUser, signupUser,getUserData, authenticateUser, uploadImage, editUserDetails} from './user/userActions';
