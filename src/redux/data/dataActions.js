@@ -1,5 +1,6 @@
-import {SET_SCREAM, SET_SCREAMS, LOADING_DATA, LIKE_SCREAM, UNLIKE_SCREAM, DELETE_SCREAM} from './dataTypes';
+import {SET_SCREAM, SET_SCREAMS, LOADING_DATA, LIKE_SCREAM, UNLIKE_SCREAM, DELETE_SCREAM, POST_SCREAM} from './dataTypes';
 import axios from 'axios';
+import { loadUI, setError, clearError } from '../UI/UIActions';
 
 const loadingScream = () => {
     return{
@@ -34,8 +35,16 @@ const deleteAction = (payload) => {
     })
 }
 
+
 const clearScreams = () => dispatch => {
     dispatch(setScreams([]));
+}
+
+const postScreamAction = (payload) => {
+    return({
+        type:POST_SCREAM,
+        payload
+    })
 }
 
 // Get all screams
@@ -75,4 +84,18 @@ export const deleteScream = screamId => dispatch => {
             dispatch(deleteAction(screamId));
         })
         .catch((err)=>console.log(err));
+}
+
+export const postScream = (newScream) => dispatch => {
+    dispatch(loadUI());
+    console.log(newScream);
+    axios.post('/scream', newScream)
+        .then(res => {
+            dispatch(postScreamAction(res.data));
+            dispatch(clearError());
+        })
+        .catch(err => {
+            dispatch(setError(err.response.data));
+        });
+        
 }

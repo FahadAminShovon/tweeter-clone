@@ -1,4 +1,5 @@
-import { SET_USER, SET_AUTHENTICATED, SET_UNAUTHENTICATED, LOADING_USER, LIKE_SCREAM, UNLIKE_SCREAM } from './userTypes'
+import { SET_USER, SET_AUTHENTICATED, SET_UNAUTHENTICATED, LOADING_USER} from './userTypes'
+import { LIKE_SCREAM, UNLIKE_SCREAM } from '../data/dataTypes';
 
 
 const initialState = {
