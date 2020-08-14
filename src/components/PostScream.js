@@ -22,15 +22,17 @@ import { clearError } from '../redux/UI/UIActions';
 const useStyles = makeStyles((theme) => ({...theme.spreadIt,
     submitButton: {
         position: 'relative',
-        progress: 'spinner'
+        progress: 'spinner',
+        float: 'right',
+        marginTop: '10px'
     },
     progressSpinner: {
         position: 'absolute'
     },
     closeButton: {
         position: 'absolute',
-        left: '90%',
-        top: '10%'
+        left: '91%',
+        top: '6%'
     }
 }));
 
@@ -46,8 +48,8 @@ function PostScream() {
     }
 
     const handleClose = () => {
-        setOpen(false);
         dispatch(clearError());
+        setOpen(false);
     }
 
     const handleSubmit = async(e) => {
@@ -60,12 +62,13 @@ function PostScream() {
             <MyButton tip="Post a scream!" onClick={handleOpen}>
                 <AddIcon/>
             </MyButton>
-            <Dialog open={open}
+            <Dialog 
+            open={open}
             onClose={handleClose}
             fullWidth
             maxWidth="sm"
             >
-                <MyButton tip="Close" onClick={handleClose} btnClassName={classes.closeButton}>
+                <MyButton tip="Close" onClick={handleClose} tipClassName={classes.closeButton}>
                     <CloseIcon/>
                 </MyButton>
                 <DialogTitle>Post a new Scream</DialogTitle>
@@ -86,7 +89,7 @@ function PostScream() {
                         <Button type="submit" variant="contained" color="primary"
                             className={classes.submitButton} disabled={loading}>
                                 Submit
-                                {loading && <CircularProgress sixe={30} className={classes.progressSpinner}/>}
+                                {loading && <CircularProgress size={30} className={classes.progressSpinner}/>}
                             </Button>
                     </form>
                 </DialogContent>

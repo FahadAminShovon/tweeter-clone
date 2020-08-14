@@ -1,4 +1,4 @@
-import {SET_ERRORS, CLEAR_ERRORS, LOADING_UI} from './UITypes';
+import {SET_ERRORS, CLEAR_ERRORS, LOADING_UI, STOP_LOADING} from './UITypes';
 
 
 export const loadUI = () => {
@@ -17,5 +17,11 @@ export const setError = (payload) => {
     return{
         type: SET_ERRORS,
         payload: payload
+    }
+}
+
+export const stopLoading = () => {
+    return {
+        type: STOP_LOADING
     }
 }

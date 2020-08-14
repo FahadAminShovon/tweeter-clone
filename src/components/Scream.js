@@ -23,6 +23,7 @@ import { useDispatch, useSelector } from 'react-redux';
 //utils
 import MyButton from '../util/MyButton';
 import DeleteScream from './DeleteScream';
+import ScreamDialog from './ScreamDialog';
 
 const useStyles = makeStyles({
     card: {
@@ -93,6 +94,7 @@ function Scream({scream : {body, createdAt, userImage, userHandle,screamId, like
                     <ChatIcon color="primary"/>
                 </MyButton>
                 <span>{commentCount} comments</span>
+                <ScreamDialog screamId={screamId} userHandle={userHandle} />
             </CardContent>
         </Card>
     )
