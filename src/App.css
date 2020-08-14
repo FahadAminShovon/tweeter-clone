@@ -6,6 +6,9 @@
   margin: 0;
   box-sizing: border-box;
 }
+body,html {
+  background-color: rgb(245, 245, 245);
+}
 
 .container{
   margin: 80px auto 0px auto;

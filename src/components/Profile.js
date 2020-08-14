@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 // react router
 import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
@@ -6,14 +6,19 @@ import dayjs from 'dayjs';
 import {makeStyles} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import MuiLink from '@material-ui/core/Link';
+import Tooltip from '@material-ui/core/Tooltip';
 // Icons
 import LocationIcon from '@material-ui/icons/LocationOn';
 import LinkIcon from '@material-ui/icons/Link';
 import CalenderToday from '@material-ui/icons/CalendarToday';
+import EditIcon from '@material-ui/icons/Edit';
 // Redux 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Typography from '@material-ui/core/Typography';
-import { Button } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import { uploadImage } from '../redux';
+
 
 const useStyles = makeStyles((theme) => ({...theme.spreadIt}));
 
@@ -21,6 +26,19 @@ function Profile() {
     const classes = useStyles();;
     const {bio, createdAt, email, handle, imageUrl, location, userId, website} = useSelector(state => state.user.credentials);
     const {loading,authenticated} = useSelector(state => state.user);
+    const dispatch = useDispatch();
+    const fileRef = useRef();
+
+    const handleImageChange = (e) => {
+        const image = e.target.files[0];
+        const formData = new FormData();
+        formData.append('image', image, image.name);
+        dispatch(uploadImage(formData));
+    }
+
+    const handleEditPicture = () => {
+        fileRef.current.click();
+    }
 
     let profileMarkup = !loading ? (authenticated ? 
         (
@@ -28,6 +46,18 @@ function Profile() {
                 <div className={classes.profile}>
                     <div className="image-wrapper">
                         <img src={imageUrl} alt="profile" className="profile-image"/>
+                        <input
+                        ref = {fileRef}
+                        type="file" 
+                        id="imageInput"
+                        hidden="hidden"
+                        onChange={handleImageChange}
+                        />
+                        <Tooltip title="Edit profile picture" placement="top" arrow>
+                            <IconButton onClick={handleEditPicture} className="button">
+                                <EditIcon color="primary"/>
+                            </IconButton>
+                        </Tooltip>
                     </div>
                     <hr/>
                     <div className="profile-details">
