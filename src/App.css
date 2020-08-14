@@ -19,34 +19,3 @@ a{
 .nav-container {
   margin: auto;
 }
-
-.form{
-  text-align: center;
-}
-
-.image{
-  margin: 20px auto;
-}
-
-.pageTitle{
-  margin: 10px auto 20px;
-}
-.textField{
-    margin: 10px auto 20px !important;
-}
-
-.button{
-  margin-top: 20px !important;
-  position: relative !important;
-  margin-bottom: 10px !important;
-}
-
-.customError{
-    color: red;
-    font-size: 0.8rem;
-    margin-top: 10px;
-}
-.progress{
-    position: absolute !important;
-}
-

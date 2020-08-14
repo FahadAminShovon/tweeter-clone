@@ -15,7 +15,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import customTheme from './util/theme';
 import AuthRoute from './util/AuthRoute';
 // Component import
-import Navbar from './components/Navbar';
+import {Navbar} from './components';
 // page imports
 import {Home, Login, Signup} from './pages';
 import axios from 'axios';

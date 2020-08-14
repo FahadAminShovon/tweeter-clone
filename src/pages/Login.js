@@ -1,5 +1,6 @@
 import React from 'react'
 //Mui stuff
+import {makeStyles} from '@material-ui/core/styles';
 import AppIcon from '../images/icon.png';
 import { Link, useHistory } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
@@ -16,6 +17,7 @@ import { useSelector, useDispatch } from 'react-redux';
 // action imports
 import { loginUser } from '../redux';
 
+const useStyles = makeStyles((theme) => ({...theme.spreadIt}));
 
 const Login = () => {
   const [email, emailBind] = useInput("");
@@ -24,18 +26,20 @@ const Login = () => {
   let loading = useSelector(state => state.UI.loading);
   const history = useHistory();
   const dispatch = useDispatch();
+  const classes = useStyles();
 
+  console.log(classes);
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(loginUser({email,password},history));
   }
 
   return (
-    <Grid container className="form">
+    <Grid container className={classes.form}>
     <Grid item sm/>
     <Grid item sm xs={12}>
-        <img src={AppIcon} alt="monkey" className="image"/>
-        <Typography variant="h2" className="pageTitle">
+        <img src={AppIcon} alt="monkey" className={classes.image}/>
+        <Typography variant="h2" className={classes.pageTitle}>
             Login
         </Typography>
         <form noValidate onSubmit = {handleSubmit}>
@@ -43,7 +47,7 @@ const Login = () => {
                 id="email" 
                 type="email" 
                 label="Email"
-                className="textField"
+                className= {classes.textField}
                 helperText={errors.email}
                 error={errors.email ? true : false}
                 fullWidth
@@ -53,7 +57,7 @@ const Login = () => {
                 id="password" 
                 type="password" 
                 label="Password"
-                className="textField"
+                className= {classes.textField}
                 helperText={errors.password}
                 error={errors.password ? true : false}
                 fullWidth
@@ -62,7 +66,7 @@ const Login = () => {
                 {
                     errors.general && (
                         <Typography variant="body2" 
-                    className="customError">
+                    className= {classes.customError}>
                         {errors.general}
                     </Typography>
                     )
@@ -71,11 +75,11 @@ const Login = () => {
                 type="submit" 
                 variant="contained" 
                 color="primary"
-                className="button"
+                className= {classes.button}
                 disabled={loading}>
                     Login
                     {loading && (
-                        <CircularProgress size={30} className="progress"/>
+                        <CircularProgress size={30} className= {classes.progress}/>
                     )}
             </Button>
             <br />

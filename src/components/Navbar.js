@@ -8,7 +8,7 @@ import Toolbar from '@material-ui/core/Toolbar'
 import Button from '@material-ui/core/Button'
 
 
-export default function Navbar() {
+function Navbar() {
     return (
         <Appbar>
             <Toolbar className="nav-container">
@@ -19,3 +19,5 @@ export default function Navbar() {
         </Appbar>
     )
 }
+
+export {Navbar}

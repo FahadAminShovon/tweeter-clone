@@ -9,7 +9,8 @@ import {makeStyles} from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia'
-import Typography from '@material-ui/core/Typography'
+import Typography from '@material-ui/core/Typography';
+// Mui stuffs
 
 const useStyles = makeStyles({
     card: {
@@ -25,7 +26,7 @@ const useStyles = makeStyles({
     }
 });
 
-export default function Scream({scream : {body, createdAt, userImage, userHandle,screamId, likeCount, commentCount}}) {
+function Scream({scream : {body, createdAt, userImage, userHandle,screamId, likeCount, commentCount}}) {
     const classes = useStyles();
     dayjs.extend(relativeTime);
     return (
@@ -42,3 +43,5 @@ export default function Scream({scream : {body, createdAt, userImage, userHandle
         </Card>
     )
 }
+
+export {Scream}
