@@ -34,13 +34,21 @@ const useStyles = makeStyles(theme => ({...theme.spreadIt,
             closeButton: {
                 position: 'absolute',
                 left: '90%'
+            },
+            expandButton: {
+                position: 'absolute',
+                left: '90%'
+            },
+            spinnerDiv:{
+                textAlign: "center",
+                margin: "50px 0"
             }
 }))
 
 function ScreamDialog({screamId}) {
     const [open, setOpen] = useState(false);
     const dispatch = useDispatch();
-    const {body, createdAt, likeCound, commentCount, userImage, userHandle} = useSelector(state => state.data.scream);
+    const {body, createdAt, likeCount, commentCount, userImage, userHandle} = useSelector(state => state.data.scream);
     const {loading} = useSelector(state => state.UI);
     const classes = useStyles();
 
@@ -54,7 +62,9 @@ function ScreamDialog({screamId}) {
     }
 
     const dialogMarkup = loading ? (
-        <CircularProgress size = {200}/>
+        <div className={classes.spinnerDiv}>
+            <CircularProgress size = {200} thickness={2}/>
+        </div>
     ) : (
         <Grid container spacing = {1}>
             <Grid item sm={5}>
