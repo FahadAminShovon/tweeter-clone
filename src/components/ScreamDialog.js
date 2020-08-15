@@ -13,9 +13,11 @@ import Typography from '@material-ui/core/Typography';
 // icons
 import CloseIcon from '@material-ui/icons/Close';
 import UnfoldMore from '@material-ui/icons/UnfoldMore';
+import ChatIcon from '@material-ui/icons/Chat'
 // Redux stuff
 import { getScream } from '../redux/data/dataActions';
 import { useDispatch, useSelector } from 'react-redux';
+import LikeButton from './LikeButton';
 
 const useStyles = makeStyles(theme => ({...theme.spreadIt,
             invisibleSeparator: {
@@ -45,12 +47,13 @@ const useStyles = makeStyles(theme => ({...theme.spreadIt,
             }
 }))
 
-function ScreamDialog({screamId}) {
+function ScreamDialog({screamId, likedScream}) {
     const [open, setOpen] = useState(false);
-    const dispatch = useDispatch();
-    const {body, createdAt, likeCount, commentCount, userImage, userHandle} = useSelector(state => state.data.scream);
-    const {loading} = useSelector(state => state.UI);
     const classes = useStyles();
+    const authenticated = useSelector(state => state.user.authenticated)
+    const {loading} = useSelector(state => state.UI);
+    const {body, createdAt, likeCount, commentCount, userImage, userHandle} = useSelector(state => state.data.scream);
+    const dispatch = useDispatch();
 
     const handleOpen = () => {
         setOpen(true);
@@ -86,6 +89,16 @@ function ScreamDialog({screamId}) {
                 <Typography variant="body1">
                     {body}
                 </Typography>
+                <LikeButton
+                    screamId = {screamId}
+                    authenticated = {authenticated}
+                    likedScream={likedScream}
+                />
+                <span>{likeCount} Likes </span>
+                <MyButton tip="comments">
+                    <ChatIcon color="primary"/>
+                </MyButton>
+                <span>{commentCount} comments</span>
             </Grid>
         </Grid>
     )
@@ -116,7 +129,8 @@ function ScreamDialog({screamId}) {
 }
 
 ScreamDialog.propTypes = {
-    screamId: PropTypes.string.isRequired
+    screamId: PropTypes.string.isRequired,
+    likedScream: PropTypes.func.isRequired
 }
 
 export default ScreamDialog
