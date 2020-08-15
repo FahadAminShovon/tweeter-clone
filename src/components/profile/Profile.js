@@ -18,8 +18,8 @@ import KeyboardReturn from '@material-ui/icons/KeyboardReturn'
 import { useSelector, useDispatch } from 'react-redux';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import { uploadImage, logoutUser} from '../redux';
-import MyButton from '../util/MyButton';
+import { uploadImage, logoutUser} from '../../redux';
+import MyButton from '../../util/MyButton';
 
 
 const useStyles = makeStyles((theme) => ({...theme.spreadIt}));

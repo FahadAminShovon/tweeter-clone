@@ -1,7 +1,7 @@
 import React from 'react'
 // react router dom import
 import {Link} from 'react-router-dom';
-import MyButton from '../util/MyButton';
+import MyButton from '../../util/MyButton';
 // import material ui stuff
 import Appbar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar'
@@ -11,7 +11,8 @@ import { useSelector } from 'react-redux';
 // Icons
 import HomeIcon from '@material-ui/icons/Home';
 import Notifications from '@material-ui/icons/Notifications';
-import PostScream from './PostScream';
+import PostScream from '../scream/PostScream';
+
 
 
 

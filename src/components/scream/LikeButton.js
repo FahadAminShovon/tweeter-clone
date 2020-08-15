@@ -1,11 +1,11 @@
 import React from 'react';
-import MyButton from '../util/MyButton';
+import MyButton from '../../util/MyButton';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 //Icons 
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import Favorite from '@material-ui/icons/Favorite';
-import { likeScream, unlikeScream } from '../redux';
+import { likeScream, unlikeScream } from '../../redux';
 import { useDispatch } from 'react-redux';
 
 function LikeButton({authenticated, likedScream, screamId}) {

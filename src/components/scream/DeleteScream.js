@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core'
-import MyButton from '../util/MyButton'
+import MyButton from '../../util/MyButton'
 import PropTypes from 'prop-types'
 // MUI stuff
 import Button from '@material-ui/core/Button';
@@ -9,7 +9,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogActions from '@material-ui/core/DialogActions';
 import DeleteOutline from '@material-ui/icons/DeleteOutline';
 
-import { deleteScream } from '../redux/data/dataActions';
+import { deleteScream } from '../../redux/data/dataActions';
 import { useDispatch } from 'react-redux'
 
 const useStyles = makeStyles((theme) => ({...theme.spreadIt ,

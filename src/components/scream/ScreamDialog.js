@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core';
-import MyButton from '../util/MyButton';
+import MyButton from '../../util/MyButton';
 import dayjs from 'dayjs';
 import { Link } from 'react-router-dom';
 // MUI stuff
@@ -15,7 +15,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import UnfoldMore from '@material-ui/icons/UnfoldMore';
 import ChatIcon from '@material-ui/icons/Chat'
 // Redux stuff
-import { getScream } from '../redux/data/dataActions';
+import { getScream } from '../../redux/data/dataActions';
 import { useDispatch, useSelector } from 'react-redux';
 import LikeButton from './LikeButton';
 

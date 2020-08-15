@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 // redux imports
-import { editUserDetails } from '../redux';
+import { editUserDetails } from '../../redux';
 // hooks import
-import useInput from '../hooks/useInput';
+import useInput from '../../hooks/useInput';
 import { useSelector, useDispatch } from 'react-redux';
 // MUI imoprts
 import {makeStyles} from '@material-ui/core/styles';
@@ -14,7 +14,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 // icons
 import EditIcon from '@material-ui/icons/Edit';
-import MyButton from '../util/MyButton';
+import MyButton from '../../util/MyButton';
 
 
 const useStyles = makeStyles((theme) => ({...theme.spreadIt, button:{float:"right"}}));

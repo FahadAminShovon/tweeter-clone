@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 // redux imports
-import { postScream } from '../redux';
+import { postScream } from '../../redux';
 // hooks import
-import useInput from '../hooks/useInput';
+import useInput from '../../hooks/useInput';
 import { useSelector, useDispatch } from 'react-redux';
 // MUI imoprts
 import {makeStyles} from '@material-ui/core/styles';
@@ -15,8 +15,8 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 // icons
 import AddIcon from '@material-ui/icons/Add';
 import CloseIcon from '@material-ui/icons/Close';
-import MyButton from '../util/MyButton';
-import { clearError } from '../redux/UI/UIActions';
+import MyButton from '../../util/MyButton';
+import { clearError } from '../../redux/UI/UIActions';
 
 
 const useStyles = makeStyles((theme) => ({...theme.spreadIt,
