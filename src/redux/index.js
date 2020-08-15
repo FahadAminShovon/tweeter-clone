@@ -1,2 +1,2 @@
 export {loginUser, logoutUser, signupUser,getUserData, authenticateUser, uploadImage, editUserDetails} from './user/userActions';
-export {getScreams, likeScream, unlikeScream, postScream} from './data/dataActions'
+export {getScreams, likeScream, unlikeScream, postScream, submitComment} from './data/dataActions'

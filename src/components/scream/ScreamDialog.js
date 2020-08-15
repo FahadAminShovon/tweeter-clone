@@ -19,6 +19,7 @@ import { getScream } from '../../redux/data/dataActions';
 import { useDispatch, useSelector } from 'react-redux';
 import LikeButton from './LikeButton';
 import Comments from './Comments';
+import CommentForm from './CommentForm';
 
 const useStyles = makeStyles(theme => ({...theme.spreadIt,
             profileImage: {
@@ -98,6 +99,7 @@ function ScreamDialog({screamId, likedScream}) {
                 <span>{commentCount} comments</span>
             </Grid>
             <hr className={classes.visibleSeparator}/>
+            <CommentForm screamId={screamId}/>
             <Comments comments={comments ? comments : []}/>
         </Grid>
     )

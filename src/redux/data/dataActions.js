@@ -1,4 +1,4 @@
-import {SET_SCREAM, SET_SCREAMS, LOADING_DATA, LIKE_SCREAM, UNLIKE_SCREAM, DELETE_SCREAM, POST_SCREAM} from './dataTypes';
+import {SET_SCREAM, SET_SCREAMS, LOADING_DATA, LIKE_SCREAM, UNLIKE_SCREAM, DELETE_SCREAM, POST_SCREAM, SUBMIT_COMMENT} from './dataTypes';
 import axios from 'axios';
 import { loadUI, setError, clearError, stopLoading } from '../UI/UIActions';
 
@@ -50,6 +50,13 @@ const postScreamAction = (payload) => {
 const setScream = (payload) => {
     return{
         type: SET_SCREAM,
+        payload
+    }
+}
+
+const submitCommentAction = (payload) => {
+    return {
+        type: SUBMIT_COMMENT,
         payload
     }
 }
@@ -116,3 +123,18 @@ export const getScream = (screamId) => dispatch => {
         })
         .catch(err => console.log(err));
 } 
+
+// Submit comment
+
+export const submitComment = (screamId, commentData, setBody) => dispatch => {
+    axios.post(`/scream/${screamId}/comment`,commentData)
+        .then(res => {
+            dispatch(submitCommentAction(res.data));
+            dispatch(clearError());
+            setBody('');
+        })
+        .catch(err => {
+            console.log(err)
+            dispatch(setError(err.response.data));
+        });
+}

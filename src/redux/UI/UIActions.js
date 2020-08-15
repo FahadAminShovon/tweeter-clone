@@ -16,7 +16,7 @@ export const clearError = () => {
 export const setError = (payload) => {
     return{
         type: SET_ERRORS,
-        payload: payload
+        payload
     }
 }
 
