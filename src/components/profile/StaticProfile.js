@@ -14,7 +14,6 @@ const useStyles = makeStyles((theme) => ({...theme.spreadIt}));
 
 
 function StaticProfile({profile}) {
-    console.log(profile)
     // {profile:{handle, createdAt, imageUrl, bio, website, location}}
     const {handle, createdAt, imageUrl, bio, website, location}  = profile;
     const classes = useStyles();

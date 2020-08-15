@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core';
 import MyButton from '../../util/MyButton';
@@ -47,20 +47,40 @@ const useStyles = makeStyles(theme => ({...theme.spreadIt,
             }
 }))
 
-function ScreamDialog({screamId, likedScream}) {
+function ScreamDialog({screamId, likedScream, openDialog, userHandle}) {
     const [open, setOpen] = useState(false);
     const classes = useStyles();
     const authenticated = useSelector(state => state.user.authenticated)
     const {loading} = useSelector(state => state.UI);
-    const {body, createdAt, likeCount, commentCount, userImage, userHandle, comments} = useSelector(state => state.data.scream);
+    const {body, createdAt, likeCount, commentCount, userImage,comments} = useSelector(state => state.data.scream);
     const dispatch = useDispatch();
+    const [oldPath, setOldPath] = useState('');
+    const [newPath, setNewPath] = useState('');
+
+    useEffect(() => {
+        if(openDialog){
+            handleOpen();
+        }
+    },[])
+
 
     const handleOpen = () => {
         setOpen(true);
         dispatch(getScream(screamId));
+        const urlHandle = userHandle.replace(' ','%20');
+        console.log(urlHandle);
+        let oldPath = window.location.pathname;
+        const newPath = `/users/${urlHandle}/scream/${screamId}`;
+        if(oldPath === newPath)oldPath=`/users/${urlHandle}`;
+        setOpen(true);
+        setOldPath(oldPath);
+        setNewPath(newPath);
+
+        window.history.pushState(null, null , newPath);
     }
 
     const handleClose = () => {
+        window.history.pushState(null, null, oldPath)
         setOpen(false);
         dispatch(clearError());
     }
@@ -134,7 +154,8 @@ function ScreamDialog({screamId, likedScream}) {
 
 ScreamDialog.propTypes = {
     screamId: PropTypes.string.isRequired,
-    likedScream: PropTypes.func.isRequired
+    likedScream: PropTypes.func.isRequired,
+    openDialog: PropTypes.bool
 }
 
 export default ScreamDialog

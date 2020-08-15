@@ -8,12 +8,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import StaticProfile from '../components/profile/StaticProfile';
 
 
-function User({match:{params:{handle}}}) {
+function User({match:{params:{handle, screamId}}}) {
     const dispatch = useDispatch();
     const [profile, setProfile] = useState(null);
+    const [screamIdParam, setScreamIdParam] = useState(null);
     const {screams, loading} = useSelector(state => state.data);
 
+
     useEffect(() => {
+        if(screamId)setScreamIdParam(screamId);
         dispatch(getAnyUserData(handle));
         axios.get(`/user/${handle}`)
             .then(res => {
@@ -26,8 +29,17 @@ function User({match:{params:{handle}}}) {
         <p>Loading data...</p>
     ) : (screams === null ? (
         <p>No screams from this user.</p>
-    ) : (
+    ) : !screamIdParam ?  (
         screams.map(scream => <Scream key={scream.screamId} scream={scream}/>)
+    ) : (
+        screams.map(scream => {
+            if(scream.screamId !== screamIdParam){
+                return  <Scream key={scream.screamId} scream={scream}/>;
+            }
+            else {
+                return <Scream key={scream.screamId} scream={scream} openDialog={true}/>
+            }
+        })
     ))
 
 

@@ -37,7 +37,7 @@ const useStyles = makeStyles({
     }
 });
 
-function Scream({scream : {body, createdAt, userImage, userHandle,screamId, likeCount, commentCount}}) {
+function Scream({scream : {body, createdAt, userImage, userHandle,screamId, likeCount, commentCount}, openDialog}) {
     const classes = useStyles();
     dayjs.extend(relativeTime);
     const user = useSelector(state => state.user);
@@ -71,14 +71,15 @@ function Scream({scream : {body, createdAt, userImage, userHandle,screamId, like
                     <ChatIcon color="primary"/>
                 </MyButton>
                 <span>{commentCount} comments</span>
-                <ScreamDialog screamId={screamId} userHandle={userHandle} likedScream={likedScream} />
+                <ScreamDialog screamId={screamId} userHandle={userHandle} likedScream={likedScream} openDialog={openDialog}/>
             </CardContent>
         </Card>
     )
 }
 
 Scream.propTypes = {
-    scream: PropTypes.object.isRequired 
+    scream: PropTypes.object.isRequired ,
+    openDialog: PropTypes.bool
 }
 
 
