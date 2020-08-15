@@ -78,7 +78,7 @@ function Scream({scream : {body, createdAt, userImage, userHandle,screamId, like
 }
 
 Scream.propTypes = {
-    scream: PropTypes.object.isRequired
+    scream: PropTypes.object.isRequired 
 }
 
 

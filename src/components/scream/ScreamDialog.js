@@ -18,12 +18,9 @@ import ChatIcon from '@material-ui/icons/Chat'
 import { getScream } from '../../redux/data/dataActions';
 import { useDispatch, useSelector } from 'react-redux';
 import LikeButton from './LikeButton';
+import Comments from './Comments';
 
 const useStyles = makeStyles(theme => ({...theme.spreadIt,
-            invisibleSeparator: {
-                border:"none",
-                margin: 4
-            },
             profileImage: {
                 maxWidth: 200,
                 height: 200,
@@ -52,7 +49,7 @@ function ScreamDialog({screamId, likedScream}) {
     const classes = useStyles();
     const authenticated = useSelector(state => state.user.authenticated)
     const {loading} = useSelector(state => state.UI);
-    const {body, createdAt, likeCount, commentCount, userImage, userHandle} = useSelector(state => state.data.scream);
+    const {body, createdAt, likeCount, commentCount, userImage, userHandle, comments} = useSelector(state => state.data.scream);
     const dispatch = useDispatch();
 
     const handleOpen = () => {
@@ -100,6 +97,8 @@ function ScreamDialog({screamId, likedScream}) {
                 </MyButton>
                 <span>{commentCount} comments</span>
             </Grid>
+            <hr className={classes.visibleSeparator}/>
+            <Comments comments={comments ? comments : []}/>
         </Grid>
     )
     return (
