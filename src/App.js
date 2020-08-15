@@ -17,7 +17,7 @@ import AuthRoute from './util/AuthRoute';
 // Component import
 import {Navbar} from './components';
 // page imports
-import {Home, Login, Signup} from './pages';
+import {Home, Login, Signup, User} from './pages';
 import axios from 'axios';
 
 const theme = createMuiTheme(customTheme);
@@ -48,6 +48,7 @@ function App() {
                 <Route exact path="/" component={Home}/>
                 <AuthRoute exact path="/login" component={Login}/>
                 <AuthRoute exact path="/signup" component={Signup}/>
+                <Route exact path="/users/:handle" component={User}/>
               </Switch>
             </div>
         </Provider>

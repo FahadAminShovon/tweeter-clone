@@ -57,7 +57,7 @@ function Scream({scream : {body, createdAt, userImage, userHandle,screamId, like
             image = {userImage}
             title="Profile image"/>
             <CardContent className={classes.content}>
-                <Typography variant="h5" component={Link} color="primary" to={`/user/${userHandle}`}>{userHandle}</Typography>
+                <Typography variant="h5" component={Link} color="primary" to={`/users/${userHandle}`}>{userHandle}</Typography>
                 {deleteButton}
                 <Typography variant="body2" color="textSecondary">{dayjs(createdAt).fromNow()}</Typography>
                 <Typography variant="body1">{body}</Typography>

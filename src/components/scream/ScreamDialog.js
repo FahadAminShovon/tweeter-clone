@@ -16,10 +16,12 @@ import UnfoldMore from '@material-ui/icons/UnfoldMore';
 import ChatIcon from '@material-ui/icons/Chat'
 // Redux stuff
 import { getScream } from '../../redux/data/dataActions';
+import { clearError } from '../../redux/UI/UIActions';
 import { useDispatch, useSelector } from 'react-redux';
 import LikeButton from './LikeButton';
 import Comments from './Comments';
 import CommentForm from './CommentForm';
+
 
 const useStyles = makeStyles(theme => ({...theme.spreadIt,
             profileImage: {
@@ -60,6 +62,7 @@ function ScreamDialog({screamId, likedScream}) {
 
     const handleClose = () => {
         setOpen(false);
+        dispatch(clearError());
     }
 
     const dialogMarkup = loading ? (

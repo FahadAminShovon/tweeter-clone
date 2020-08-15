@@ -138,3 +138,16 @@ export const submitComment = (screamId, commentData, setBody) => dispatch => {
             dispatch(setError(err.response.data));
         });
 }
+
+
+export const getUserData = (userHandle) => dispatch => {
+    dispatch(loadUI());
+    axios.get(`/user/${userHandle}`)
+        .then(res => {
+            dispatch(setScreams(res.data.screams));
+        })
+        .catch(err => {
+            console.log(err);
+            dispatch(setScream(null));
+        })
+}
