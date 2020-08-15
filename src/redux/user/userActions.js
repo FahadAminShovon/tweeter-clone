@@ -1,6 +1,6 @@
 import axios from "axios";
 import { clearError, setError, loadUI} from "../UI/UIActions";
-import {SET_USER, SET_UNAUTHENTICATED, SET_AUTHENTICATED, LOADING_USER } from './userTypes';
+import {SET_USER, SET_UNAUTHENTICATED, SET_AUTHENTICATED, LOADING_USER, MARK_NOTIFICATIONS_READ } from './userTypes';
 
 export const setUser = (payload) => {
     return({
@@ -25,6 +25,12 @@ export const unAuthUser = () => {
     return({
         type: SET_UNAUTHENTICATED
     })
+}
+
+const notificationsReadCreator = () => {
+    return{
+        type: MARK_NOTIFICATIONS_READ
+    }
 }
 
 
@@ -94,6 +100,14 @@ export const editUserDetails = (userDetails) => (dispatch) => {
     axios.post('/user',userDetails)
         .then(() => {
             dispatch(getUserData());
+        })
+        .catch(err => console.log(err));
+}
+
+export const markNotificationsRead = (notificationIds) => dispatch => {
+    axios.post('/notifications', notificationIds)
+        .then(() => {
+            dispatch(notificationsReadCreator());
         })
         .catch(err => console.log(err));
 }

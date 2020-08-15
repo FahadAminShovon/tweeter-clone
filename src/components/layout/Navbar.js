@@ -10,8 +10,9 @@ import Button from '@material-ui/core/Button'
 import { useSelector } from 'react-redux';
 // Icons
 import HomeIcon from '@material-ui/icons/Home';
-import Notifications from '@material-ui/icons/Notifications';
 import PostScream from '../scream/PostScream';
+import Notifications from './Notifications';
+
 
 
 
@@ -29,9 +30,7 @@ function Navbar() {
                                 <HomeIcon/>
                             </Link>
                         </MyButton>
-                        <MyButton tip="Notifications">
-                            <Notifications/>
-                        </MyButton>
+                        <Notifications/>
                     </>
                 ) : (
                     <>

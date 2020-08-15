@@ -1,4 +1,4 @@
-import { SET_USER, SET_AUTHENTICATED, SET_UNAUTHENTICATED, LOADING_USER} from './userTypes'
+import { SET_USER, SET_AUTHENTICATED, SET_UNAUTHENTICATED, LOADING_USER, MARK_NOTIFICATIONS_READ} from './userTypes'
 import { LIKE_SCREAM, UNLIKE_SCREAM } from '../data/dataTypes';
 
 
@@ -46,6 +46,11 @@ export default function(state = initialState, action){
             return{
                 ...state,
                 likes: state.likes.filter(like=>like.screamId !== action.payload.screamId)
+            }
+        case MARK_NOTIFICATIONS_READ:
+            state.notifications.forEach(not => not.read = true);
+            return{
+                ...state
             }
         default:
             return state;

@@ -55,7 +55,6 @@ function ScreamDialog({screamId, likedScream, openDialog, userHandle}) {
     const {body, createdAt, likeCount, commentCount, userImage,comments} = useSelector(state => state.data.scream);
     const dispatch = useDispatch();
     const [oldPath, setOldPath] = useState('');
-    const [newPath, setNewPath] = useState('');
 
     useEffect(() => {
         if(openDialog){
@@ -68,13 +67,11 @@ function ScreamDialog({screamId, likedScream, openDialog, userHandle}) {
         setOpen(true);
         dispatch(getScream(screamId));
         const urlHandle = userHandle.replace(' ','%20');
-        console.log(urlHandle);
         let oldPath = window.location.pathname;
         const newPath = `/users/${urlHandle}/scream/${screamId}`;
         if(oldPath === newPath)oldPath=`/users/${urlHandle}`;
         setOpen(true);
         setOldPath(oldPath);
-        setNewPath(newPath);
 
         window.history.pushState(null, null , newPath);
     }
