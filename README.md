@@ -1,3 +1,6 @@
+This project was made following this awesome [tutorial](https://youtu.be/m_u6P5k0vP0).
+However the tutorial uses classbased components and this one uses **functional components** and **react hooks**. 
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
