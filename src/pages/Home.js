@@ -7,6 +7,7 @@ import {Profile} from '../components';
 // redux-imports
 import { getScreams } from '../redux';
 import { useDispatch, useSelector } from 'react-redux';
+import ScreamSkeleton from '../util/ScreamSkeleton';
 
 
 function Home() {
@@ -19,7 +20,7 @@ function Home() {
     let recentScreamsMarkup = !loading ? (
         screams.map(scream => <Scream key={scream.screamId} scream={scream}/>)
     ): (
-    <p>Loading ...</p>
+    <ScreamSkeleton/>
     )
 
     return (

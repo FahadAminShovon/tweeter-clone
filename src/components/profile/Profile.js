@@ -20,6 +20,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { uploadImage, logoutUser} from '../../redux';
 import MyButton from '../../util/MyButton';
+import ProfileSkeleton from '../../util/ProfileSkeleton';
 
 
 const useStyles = makeStyles((theme) => ({...theme.spreadIt}));
@@ -31,6 +32,7 @@ function Profile() {
     const {loading,authenticated} = useSelector(state => state.user);
     const dispatch = useDispatch();
     const fileRef = useRef();
+
 
     const handleImageChange = (e) => {
         const image = e.target.files[0];
@@ -105,7 +107,7 @@ function Profile() {
                     </Button>
                 </div>
             </Paper>
-        )) : ( <p>loading....</p>);
+        )) : ( <ProfileSkeleton/>);
 
     return (
         profileMarkup

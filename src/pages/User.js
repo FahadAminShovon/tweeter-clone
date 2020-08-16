@@ -6,6 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import { getAnyUserData } from '../redux';
 import { useDispatch, useSelector } from 'react-redux';
 import StaticProfile from '../components/profile/StaticProfile';
+import ScreamSkeleton from '../util/ScreamSkeleton';
 
 
 function User({match:{params:{handle, screamId}}}) {
@@ -26,7 +27,7 @@ function User({match:{params:{handle, screamId}}}) {
     },[])
 
     const screamsMarkup = loading ? (
-        <p>Loading data...</p>
+       <ScreamSkeleton/>
     ) : (screams === null ? (
         <p>No screams from this user.</p>
     ) : !screamIdParam ?  (

@@ -145,6 +145,7 @@ export const getUserData = (userHandle) => dispatch => {
     axios.get(`/user/${userHandle}`)
         .then(res => {
             dispatch(setScreams(res.data.screams));
+            dispatch(stopLoading())
         })
         .catch(err => {
             console.log(err);
