@@ -45,10 +45,10 @@ function Scream({scream : {body, createdAt, userImage, userHandle,screamId, like
     const handle = user.credentials.handle;
     const likedScream = () => user.likes && user.likes.find(like => like.screamId === screamId) ? true : false;
 
-
     const deleteButton = authenticated && userHandle === handle ? (
         <DeleteScream screamId = {screamId}/>
     ) : null
+
 
     return (
         <Card className={classes.card}>

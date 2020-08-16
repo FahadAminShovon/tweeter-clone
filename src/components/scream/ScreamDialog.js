@@ -56,11 +56,13 @@ function ScreamDialog({screamId, likedScream, openDialog, userHandle}) {
     const dispatch = useDispatch();
     const [oldPath, setOldPath] = useState('');
 
+
+
     useEffect(() => {
         if(openDialog){
             handleOpen();
         }
-    },[])
+    },[openDialog])
 
 
     const handleOpen = () => {
@@ -72,7 +74,6 @@ function ScreamDialog({screamId, likedScream, openDialog, userHandle}) {
         if(oldPath === newPath)oldPath=`/users/${urlHandle}`;
         setOpen(true);
         setOldPath(oldPath);
-
         window.history.pushState(null, null , newPath);
     }
 
